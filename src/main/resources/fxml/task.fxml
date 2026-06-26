@@ -27,7 +27,7 @@
                   <Button fx:id="dashboardBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" text="Dashboard" />
                   <Button fx:id="coursesBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Courses" />
                   <Button fx:id="tasksBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Tasks" />
-                  <Button fx:id="StudyTimerBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Study Timer" />
+                  <Button fx:id="studyTimerBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Study Timer" />
                   <Button fx:id="gradesBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Grades" />
                </children>
                <padding>
@@ -63,7 +63,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox prefHeight="300.0" prefWidth="700.0" spacing="10.0">
+            <VBox prefHeight="313.0" prefWidth="800.0" spacing="10.0">
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
@@ -80,7 +80,13 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="35.0" prefWidth="330.0" />
+                        <TextField fx:id="titleTextField" prefHeight="35.0" prefWidth="330.0" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Label" />
+                        <TextField />
                      </children>
                   </HBox>
                   <HBox layoutX="30.0" layoutY="57.0" prefHeight="50.0" prefWidth="740.0" spacing="15.0">
@@ -90,7 +96,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ComboBox prefHeight="35.0" prefWidth="330.0" />
+                        <ComboBox fx:id="courseComboBox" prefHeight="35.0" prefWidth="330.0" />
                      </children>
                   </HBox>
                   <HBox layoutX="30.0" layoutY="117.0" prefHeight="50.0" prefWidth="740.0" spacing="15.0">
@@ -100,7 +106,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <DatePicker prefHeight="35.0" prefWidth="330.0" />
+                        <DatePicker fx:id="dueDateDatePicker" prefHeight="35.0" prefWidth="330.0" />
                      </children>
                   </HBox>
                   <HBox layoutX="30.0" layoutY="177.0" prefHeight="50.0" prefWidth="740.0" spacing="15.0">
@@ -110,7 +116,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ComboBox prefHeight="35.0" prefWidth="330.0" />
+                        <ComboBox fx:id="priorityComboBox" prefHeight="35.0" prefWidth="330.0" />
                      </children>
                   </HBox>
                   <HBox layoutX="30.0" layoutY="237.0" prefHeight="50.0" prefWidth="740.0" spacing="15.0">
@@ -120,15 +126,15 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ComboBox prefHeight="35.0" prefWidth="330.0" />
+                        <ComboBox fx:id="statusComboBox" prefHeight="35.0" prefWidth="330.0" />
                      </children>
                   </HBox>
                   <HBox layoutX="30.0" layoutY="251.0" prefHeight="50.0" prefWidth="740.0" spacing="12.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" text="Add Task" />
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" text="Mark Done " />
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" text="Delete" />
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" text="Clear" />
+                        <Button fx:id="addBtn" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" text="Add Task" />
+                        <Button fx:id="doneBtn" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" text="Mark Done " />
+                        <Button fx:id="deleteBtn" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" text="Delete" />
+                        <Button fx:id="clearBtn" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" text="Clear" />
                      </children>
                   </HBox>
                </children>
@@ -136,13 +142,13 @@
             <VBox prefHeight="245.0" prefWidth="740.0">
                <children>
                   <Label text="Task List" />
-                  <TableView prefHeight="200.0" prefWidth="756.0">
+                  <TableView fx:id="taskTableView" prefHeight="200.0" prefWidth="756.0">
                     <columns>
-                      <TableColumn prefWidth="220.0" text="Title" />
-                      <TableColumn prefWidth="140.0" text="Course" />
-                        <TableColumn prefWidth="140.0" text="Due Date" />
-                        <TableColumn prefWidth="140.0" text="Priority" />
-                        <TableColumn prefWidth="150.0" text="Status" />
+                      <TableColumn fx:id="titleColumn" prefWidth="220.0" text="Title" />
+                      <TableColumn fx:id="courseColumn" prefWidth="140.0" text="Course" />
+                        <TableColumn fx:id="dueDateColumn" prefWidth="140.0" text="Due Date" />
+                        <TableColumn fx:id="priorityColumn" prefWidth="140.0" text="Priority" />
+                        <TableColumn fx:id="statusColumn" prefWidth="150.0" text="Status" />
                     </columns>
                   </TableView>
                </children>

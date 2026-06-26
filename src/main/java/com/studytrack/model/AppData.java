@@ -5,5 +5,6 @@ import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 
 public class AppData {
-    public static ObservableList<Course> courses= FXCollections.observableArrayList();
+    public static ObservableList<Course> courses = FXCollections.observableArrayList();
+    public static ObservableList<Task> tasks = FXCollections.observableArrayList();
 }
