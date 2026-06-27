@@ -29,4 +29,19 @@ public class Task {
     public Priority getPriority(){return this.priority;}
     public Status getStatus(){return this.status;}
 
+    public void setTaskTitle(String taskTitle){
+        this.taskTitle = taskTitle;
+    }
+    public void setCourseCode(String courseCode){
+        this.courseCode = courseCode;
+    }
+    public void setDueDate(LocalDate dueDate){
+        this.dueDate = dueDate;
+    }
+    public void setPriority(Priority priority){
+        this.priority = priority;
+    }
+    public void setStatus(Status status){
+        this.status = status;
+    }
 }
