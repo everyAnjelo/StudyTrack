@@ -60,6 +60,12 @@ public class CourseController {
             showError("Course code and course name are required.");
             return;
         }
+        for(Course course: AppData.courses){
+                if(courseCode.toUpperCase().equals(course.getCourseCode().toUpperCase())){
+                    showError("Course code already exists.");
+                    return;
+                }
+        }
 
         Course course = new Course(courseCode, courseName, lecturer, semester);
         AppData.courses.add(course);
@@ -126,7 +132,8 @@ public class CourseController {
         selectedCourse.setSemester(semester);
 
         courseTable.refresh();
-        clearFields();courseTable.getSelectionModel().clearSelection();
+        clearFields();
+        courseTable.getSelectionModel().clearSelection();
         updateBtn.setDisable(true);
         deleteBtn.setDisable(true);
 

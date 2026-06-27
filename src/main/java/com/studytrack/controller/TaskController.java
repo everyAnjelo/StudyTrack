@@ -36,13 +36,81 @@ public class TaskController {
         setupComboBoxes();
         setupTable();
         setupButtons();
+        setupSelection();
+    }
 
+    private void setupSelection(){
+        taskTableView.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldSelection, selectedCourse) -> {
+                    if (selectedCourse != null) {
+                        titleTextField.setText(selectedCourse.getTaskTitle());
+                        courseComboBox.setValue(selectedCourse.getCourseCode());
+                        dueDateDatePicker.setValue(selectedCourse.getDueDate());
+                        priorityComboBox.setValue(selectedCourse.getPriority());
+                        statusComboBox.setValue(selectedCourse.getStatus());
+
+                        doneBtn.setDisable(false);
+                        deleteBtn.setDisable(false);
+                    }
+                }
+        );
     }
 
     private void setupButtons() {
 
         addBtn.setOnAction(event -> addTask());
         clearBtn.setOnAction(event -> clearField());
+        doneBtn.setOnAction(event -> markTaskAsDone());
+        deleteBtn.setOnAction(event -> deleteTask());
+
+        doneBtn.setDisable(true);
+        deleteBtn.setDisable(true);
+    }
+
+    private void deleteTask() {
+        Task selectedTask = taskTableView.getSelectionModel().getSelectedItem();
+
+        if(selectedTask == null){
+            showError("Please select a task to delete.");
+        }
+        boolean confirmed = showConfirmation("Are you sure you want to delete this course?");
+
+        if (!confirmed) {
+            return;
+        }
+
+        AppData.tasks.remove(selectedTask);
+        clearField();
+
+    }
+
+    private void markTaskAsDone() {
+        Task selectedTask = taskTableView.getSelectionModel().getSelectedItem();
+
+        if(selectedTask == null){
+            showError("Please select a task to update");
+            return;
+        }
+
+        String taskTitle = titleTextField.getText().trim();
+        String courseCode = courseComboBox.getValue();
+        LocalDate dueDate = dueDateDatePicker.getValue();
+        Priority priority = priorityComboBox.getValue();
+        Status status = statusComboBox.getValue();
+
+        if(status == Status.COMPLETED){
+            showError("Task is already completed");
+            return;
+        }
+
+        selectedTask.setStatus(Status.COMPLETED);
+        taskTableView.refresh();
+        clearField();
+        taskTableView.getSelectionModel().clearSelection();
+
+        doneBtn.setDisable(true);
+        deleteBtn.setDisable(true);
+
     }
 
     private void clearField() {
@@ -132,6 +200,16 @@ public class TaskController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+    private boolean showConfirmation(String message) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+
+        return alert.showAndWait()
+                .filter(response -> response == ButtonType.OK)
+                .isPresent();
     }
 
 
