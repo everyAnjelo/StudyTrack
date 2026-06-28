@@ -69,7 +69,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="35.0" prefWidth="220.0" text="0">
+                              <Label fx:id="totalCourseLabel" prefHeight="35.0" prefWidth="220.0" text="0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -86,7 +86,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="35.0" prefWidth="220.0" text="0">
+                              <Label fx:id="pendingTasksLabel" prefHeight="35.0" prefWidth="220.0" text="0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -107,7 +107,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="35.0" prefWidth="220.0" text="0">
+                              <Label fx:id="completedTasksLabel" prefHeight="35.0" prefWidth="220.0" text="0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -124,7 +124,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="35.0" prefWidth="220.0" text="0">
+                              <Label fx:id="overdueTasksLabel" prefHeight="35.0" prefWidth="220.0" text="0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -145,7 +145,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="25.0" prefWidth="700.0" text="No upcoming deadlines yet. ">
+                  <Label fx:id="upcomingDeadlineLabel" prefHeight="25.0" prefWidth="700.0" text="No upcoming deadlines yet. ">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -162,7 +162,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="25.0" prefWidth="700.0" text="No tasks added yet.">
+                  <Label fx:id="recentTasksLabel" prefHeight="25.0" prefWidth="700.0" text="No tasks added yet.">
                      <font>
                         <Font size="15.0" />
                      </font>
