@@ -193,6 +193,7 @@ public class TaskController {
         coursesBtn.setOnAction(event -> SceneManager.showCourses());
         tasksBtn.setOnAction(event -> SceneManager.showTasks());
         dashboardBtn.setOnAction(event -> SceneManager.showDashboard());
+        studyTimerBtn.setOnAction(event -> SceneManager.showStudyTimer());
     }
     private void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

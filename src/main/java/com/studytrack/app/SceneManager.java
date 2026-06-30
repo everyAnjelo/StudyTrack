@@ -27,6 +27,11 @@ public class SceneManager {
         loadScene("/fxml/task.fxml");
     }
 
+    public static void showStudyTimer() {
+        loadScene("/fxml/studyTimer.fxml");
+    }
+
+
     private static void loadScene(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(fxmlPath));

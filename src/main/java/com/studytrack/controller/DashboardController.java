@@ -33,10 +33,11 @@ public class DashboardController {
         recentTasksLabel.setText(recentAddedTask());
     }
 
-    public void setNavigation(){
+    public void setNavigation() {
         coursesBtn.setOnAction(event -> SceneManager.showCourses());
         tasksBtn.setOnAction(event -> SceneManager.showTasks());
         dashboardBtn.setOnAction(event -> SceneManager.showDashboard());
+        studyTimerBtn.setOnAction(event -> SceneManager.showStudyTimer());
     }
     private int priorityCounter(Priority priority){
         int total = 0;

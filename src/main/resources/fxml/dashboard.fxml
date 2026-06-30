@@ -23,7 +23,7 @@
                   <Button fx:id="dashboardBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" text="Dashboard" />
                   <Button fx:id="coursesBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Courses" />
                   <Button fx:id="tasksBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Tasks" />
-                  <Button fx:id="studyTImerBTn" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Study Timer" />
+                  <Button fx:id="studyTimerBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Study Timer" />
                   <Button fx:id="gradesBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Grades" />
                </children>
                <padding>

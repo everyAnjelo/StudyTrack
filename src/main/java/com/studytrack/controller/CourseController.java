@@ -19,16 +19,17 @@ public class CourseController {
 
     @FXML
     private void initialize() {
-        setupNavigation();
+        setNavigation();
         setupTable();
         setupButtons();
         setupSelection();
     }
 
-    private void setupNavigation() {
+    public void setNavigation() {
         coursesBtn.setOnAction(event -> SceneManager.showCourses());
         tasksBtn.setOnAction(event -> SceneManager.showTasks());
         dashboardBtn.setOnAction(event -> SceneManager.showDashboard());
+        studyTimerBtn.setOnAction(event -> SceneManager.showStudyTimer());
     }
 
     private void setupTable() {
