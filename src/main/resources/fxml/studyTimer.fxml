@@ -90,6 +90,7 @@
                         <Button fx:id="startBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Start" />
                         <Button fx:id="pauseBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Pause" />
                         <Button fx:id="resetBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Reset" />
+                        <Button fx:id="saveSessionBtn" layoutX="485.0" layoutY="15.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Save" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">

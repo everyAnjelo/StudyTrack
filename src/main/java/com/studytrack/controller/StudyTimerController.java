@@ -2,6 +2,7 @@ package com.studytrack.controller;
 
 import com.studytrack.app.SceneManager;
 import com.studytrack.model.AppData;
+import com.studytrack.model.StudySession;
 import com.studytrack.model.Task;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -11,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
+
+import java.time.LocalDate;
 
 public class StudyTimerController {
     @FXML
@@ -23,7 +26,7 @@ public class StudyTimerController {
     private ComboBox<Task> taskComboBox;
 
     @FXML
-    private Button startBtn, pauseBtn, resetBtn;
+    private Button startBtn, pauseBtn, resetBtn, saveSessionBtn;
 
     private int elapsedSeconds = 0;
     private Timeline timer;
@@ -35,11 +38,36 @@ public class StudyTimerController {
         setupComboBox();
         setupButtons();
         updateTimerLabel();
+        updateStudySummary();
 
-        statusLabel.setText("Status: Ready");
-        totalTimeLabel.setText("Total Time Today: 00:00:00");
-        completedSessionsLabel.setText("Sessions Completed: 0");
-        lastStudiedTaskLabel.setText("Last Studied Task: None");
+    }
+
+    private void updateStudySummary() {
+        LocalDate today = LocalDate.now();
+
+        int totalSecondsToday = 0;
+        int completedSessionsToday = 0;
+
+        for (StudySession session : AppData.studySessions) {
+            if (session.getDate().isEqual(today)) {
+                totalSecondsToday += session.getDurationSeconds();
+                completedSessionsToday++;
+            }
+        }
+
+        int hours = totalSecondsToday / 3600;
+        int minutes = (totalSecondsToday % 3600) / 60;
+        int seconds = totalSecondsToday % 60;
+
+        totalTimeLabel.setText(String.format("Total Time Today: %02d:%02d:%02d", hours, minutes, seconds));
+        completedSessionsLabel.setText("Sessions Completed: " + completedSessionsToday);
+
+        if (AppData.studySessions.isEmpty()) {
+            lastStudiedTaskLabel.setText("Last Studied Task: None");
+        } else {
+            StudySession lastSession = AppData.studySessions.get(AppData.studySessions.size() - 1);
+            lastStudiedTaskLabel.setText("Last Studied Task: " + lastSession.getTaskTitle());
+        }
     }
 
     public void setNavigation() {
@@ -57,7 +85,61 @@ public class StudyTimerController {
         startBtn.setOnAction(event -> startTimer());
         pauseBtn.setOnAction(event -> pauseTimer());
         resetBtn.setOnAction(event -> resetTimer());
+        saveSessionBtn.setOnAction(event -> saveSession());
     }
+
+    private void saveSession() {
+        Task selectedTask = taskComboBox.getValue();
+
+        if (selectedTask == null) {
+            showError("Please select a task first.");
+            return;
+        }
+
+        if(elapsedSeconds <= 0){
+            showError("not started yet");
+            return;
+        }
+        StudySession studySession = new StudySession(selectedTask.getTaskTitle(),selectedTask.getCourseCode()
+                ,elapsedSeconds, LocalDate.now());
+
+        AppData.studySessions.add(studySession);
+
+        lastStudiedTaskLabel.setText(AppData.studySessions.getLast().getTaskTitle());
+        updateStudySummary();
+
+        resetTimer();
+    }
+    public void totalTimeToday(){
+        LocalDate today = LocalDate.now();
+        int totalSeconds = 0;
+
+        for(StudySession session: AppData.studySessions){
+            if (session.getDate().isEqual(today)){
+                totalSeconds += session.getDurationSeconds();
+            }
+        }
+        int hours = totalSeconds / 3600;
+        int minutes = (totalSeconds % 3600) / 60;
+        int seconds = totalSeconds % 60;
+
+        totalTimeLabel.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
+
+    }
+
+    public void completedSessionToday(){
+        LocalDate today = LocalDate.now();
+        int count = 0;
+
+        for(StudySession session: AppData.studySessions){
+            if(session.getDate().isEqual(today)){
+                count++;
+            }
+
+        }
+        completedSessionsLabel.setText(String.valueOf(count));
+    }
+
 
     private void startTimer() {
         Task selectedTask = taskComboBox.getValue();

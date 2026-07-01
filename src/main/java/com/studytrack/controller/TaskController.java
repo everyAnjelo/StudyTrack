@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 public class TaskController {
     @FXML
-    private Button dashboardBtn, coursesBtn, tasksBtn, studyTimerBtn, gradesBtn;
+    private Button dashboardBtn, coursesBtn, tasksBtn, StudyTimerBtn, gradesBtn;
     @FXML
     private ComboBox<String> courseComboBox;
     @FXML
@@ -193,7 +193,7 @@ public class TaskController {
         coursesBtn.setOnAction(event -> SceneManager.showCourses());
         tasksBtn.setOnAction(event -> SceneManager.showTasks());
         dashboardBtn.setOnAction(event -> SceneManager.showDashboard());
-        studyTimerBtn.setOnAction(event -> SceneManager.showStudyTimer());
+        StudyTimerBtn.setOnAction(event -> SceneManager.showStudyTimer());
     }
     private void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
